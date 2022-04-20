@@ -1,6 +1,7 @@
 amount_due = 50
 while amount_due > 0:
     insert_coin = int(input("Insert coin: "))
+    
     if insert_coin in [25,10,5]:
         amount_due-= insert_coin
         if amount_due>0:
