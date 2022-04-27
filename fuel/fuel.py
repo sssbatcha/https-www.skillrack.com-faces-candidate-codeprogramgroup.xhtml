@@ -1,16 +1,17 @@
-x=str(input())
-if x==('3/4'):
-    print('75%')
-elif x==('1/4'):
-    print('25%')
-elif x==('4/4'):
-    print('F')
-elif x==('0/4'):
-    print('E')
-
-
 
 try:
-    x==4/0
-except:
-    print("Can't divide with zero")
+    x=int(input())
+    y=int(input())
+    z=x/y
+    if(0.0<z<0.24):
+        print('E')
+    if(0.25<z<=0.50):
+        print('50%')
+    if(0.51<z<=0.75):
+        print('75%')
+    if(0.76<z<1.0):
+        print('E')
+except ZeroDivisionError:
+    print("cannot divide by zero")
+except ValueError:
+    print("value error")
