@@ -1,8 +1,7 @@
 
 try:
-    x=int(input())
-    y=int(input())
-    z=x/y
+
+    z=int(input())/int(input())
     if(0.0<z<0.24):
         print('E')
     if(0.25<z<=0.50):
@@ -15,3 +14,7 @@ except ZeroDivisionError:
     print("cannot divide by zero")
 except ValueError:
     print("value error")
+
+
+
+
