@@ -14,6 +14,8 @@ try:
         print('75%')
     if(0.75<c<=1.0):
         print('E')
+    if (c>1.0):
+        print('not valid')
 except ZeroDivisionError:
     print("cannot divide by zero")
 except ValueError:
