@@ -1,4 +1,4 @@
-rom twttr import shorten
+from twttr import shorten
 
 
 def test_shorten():
