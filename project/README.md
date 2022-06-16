@@ -1,26 +1,37 @@
-# Project Title:
-Virtual Car Controller For Racing Games
 
-#### Video Demo link:
-< https://drive.google.com/file/d/1jZJ2z8lBtmnkbCMCIdjZ7SVomrefSvOk/view?usp=drivesdk >
+Google search counter
+Video Demo: https://youtu.be/7jk9Uzj8HM0
+Description:
+This project is a final project for CS50P course. When working on large datasets, for example, thousands of microorganisms in microbiome, it is important to find out the most well-studied species as the target for research. This project can help people to sort key words in the order of numbers of google search results, and also provide links to wikipedia pages automatically. This will help to understand what is more well-studied, versus what is relatively unknown.
 
-#### Description:
-This is an OpenCV project that uses computer vision to detect contours and filters out the blue color on the steering wheel,The center blue area is used as the origin, and the top blue area is used for calculating the angle around the cente.
-It then calculates the slope of the line formed using the center of the wheel and the top of the wheel and uses that to determine the steering input,The position of the center of the wheel is responsible for braking and accelerating.
-The area between the two white lines is a neutral region. If the red region goes above the top line, the “up” key is pressed. If the red region goes below the bottom line, the “down” key is pressed.
+Component:
+This project contains four documments:
 
-Technologies I used:
-NumPy
-Python
-imutils
-OpenCV-Python
-pynput
+project.py contains major Python code for the program.
+test_project.py contains codes for pytest.
+requirements.txt contains Python modules needed for project.py. Install by "pip install" + module name.
+README.md is a Markdown file with instructions.
+Design:
+project.py has four functions:
 
-Use OpenCV to detect contours and filters out the blue color on the steering wheel (See Sample steering wheel)
-It then gets the slope of the line formed using the center of the wheel and the top of the wheel and uses that to determine the steering inputAlso, the position center of the wheel is responsible for braking and accelerating
-instead of playing with boring joystick and touch screen games.Lets try this new Virtual Gaming . In this project i developed only using hand steering to play. Same time i have developed one more project where we dont need hand steering our hands are enough to drive based on your hand gesture you can drive the car. And if you show only one hand in front of webcam then the car will move in backward direction. This project is an amazing one.Every students impressed and addicted playing my project. Soon i will plan to execute it to next level.
+main() function accepts input and output files via sys arguments. It then calls google() and wiki() (if "-w" is provided) to get numbers of google search results and links to wikipedia pages. Finally, it calls output() to list results by a descending order into output file.
+google() function accepts input file, with a key word on each line. For each key word, it uses "reqeusts" to scrape the google search results, and then uses "BeautifulSoup" to extract the div with the id of "result-stats", from the HTML content. Then, it uses "re", regular expression, to extract the number of google search results from the div, and converts the string into an integer. Finally, the numbers are stored into a dictionary which is returned at the end of the function.
+wiki() function is called when "-w" is provided. It accepts the same input file as google(), and search through wikipedia for the closest key words. Then it gets the wikipedia page and its associated url (if exists). Finally it stores all links into a dictionary which is then returned.
+output() function accepts dictionaries from google() and wiki(). It puts key words into a descending order by numbers of google search results, and writes them into the output file. If requested, the wikipedia links will also be added to the same file.
+User instruction:
+Usage: python + project.py INPUT_FILE OUTPUT_FILE [-w]
+-h show help page.
+-w [optional] show wikipedia links in the output file.
 
-With the help of this project  you can drive Car you can take turn Right Left, Press Break Like other gaming Cars. you can Drive game with super stunning graphics, challenging multi-stage levels and real-time Single Player.
-Use the Python openCV and Numpy libraries to monitor a steering wheel racing game. It offers you the feeling of futuristic driving.The panel is split in 4 sections, logically. When a certain color (in my case Blue) is observed in certain pieces it is considered a main click. Suppose Blue color has been identified at the top left of the panel, so a “A” key press is begun and the car turns left. The color boundaries were established using color.py, in which we defined Blue color range of HSV values.I gave up and forgot about it for a while, but the idea still seemed exciting. Finally, I decided to put some more mental energy into it, and questioned whether or not I even needed Open AI at all for a task like this. Sure, it's nice for simpler games that can be run en masse, so you can train thousands of iterations in moments,so here I used Asphalt 9 Gaming for the interaction. Because you may have to translate some things and tweak to get things working on your end, this is probably not going to be a beginner-friendly series.
+Example: $ python project.py input.txt output.tsv -w
+input.txt:
+Ecoli
+cats
+New York
+CS50
 
-My initial goal is to just create a sort of self-driving car. Any game with lanes and cars should be just fine for you to follow along. The method I will use to access the game should be do-able on almost any game. A simpler game will likely be much more simple of a task tooI may also try other games with this method, since I also think we can teach an AI to play games by simply showing it how to play for a bit, using a Convolutional Neural Network on that information, and then letting the AI poke around.In the contemporary world, new interaction forms for digital games have been developing increasingly. In this work, we present an Car controller for games using OpenCV.
+output.tsv:
+New York	8,360,000,000	https://en.wikipedia.org/wiki/New_York_City
+cats	4,270,000,000	https://en.wikipedia.org/wiki/Cat
+Ecoli	2,360,000,000	https://en.wikipedia.org/wiki/Escherichia_coli
+CS50	10,700,000	https://en.wikipedia.org/wiki/CS50
