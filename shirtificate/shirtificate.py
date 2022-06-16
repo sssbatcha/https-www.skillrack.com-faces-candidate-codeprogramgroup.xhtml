@@ -1,7 +1,7 @@
 from fpdf import FPDF
 
 class PDF():
-    def _init_(self, name):
+    def __init__(self, name):
         self._pdf = FPDF()
         self._pdf.add_page()
         self._pdf.set_font("helvetica", size=50)
